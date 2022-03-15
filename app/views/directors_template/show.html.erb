@@ -1,0 +1,121 @@
+
+<h1>
+  Director #<%= @the_director.id %> details
+</h1>
+
+<a href="/directors" class="btn btn-block btn-outline-secondary">
+  Go back
+</a>
+
+&nbsp;|&nbsp;
+
+<a href="/delete_director/<%= @the_director.id %>" class="btn btn-block btn-outline-secondary">
+  Delete director
+  <small>(Building this link is not required. It's an optional stretch goal; but, you have the tools if you want to give it a try.)</small>
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Name
+  </dt>
+  <dd>
+    <%= @the_director.name %>
+  </dd>
+
+  <dt>
+    Dob
+  </dt>
+  <dd>
+    <%= @the_director.dob %>
+  </dd>
+
+  <dt>
+    Bio
+  </dt>
+  <dd>
+    <%= @the_director.bio %>
+  </dd>
+
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <img src=<%= @the_director.image %> style="width:250px;">
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_director.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_director.updated_at) %> ago
+  </dd>
+</dl>
+
+<hr>
+
+<h2>Filmography</h2>
+
+<table border="1">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Image
+    </th>
+
+    <th>
+      Title
+    </th>
+
+    <th>
+      Year
+    </th>
+
+    <th>
+      Director
+    </th>
+
+    <th>
+    </th>
+  </tr>
+  <% @dir_movies.each do |mov|%>
+    <tr>
+      <td>
+        <%= mov.id %>
+      </td>
+
+      <td>
+        <img src="http://robohash.org/<%= mov.image %>?s" style="width:250px;">
+      </td>
+
+      <td>
+        <%= mov.title %>
+      </td>
+
+      <td>
+        <%= mov.year %>
+      </td>
+
+      <td>
+        <%= @the_director.name %>
+      </td>
+
+      <td>
+        <a href="/movies/<%= mov.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>
